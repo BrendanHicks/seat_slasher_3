@@ -1,0 +1,56 @@
+<div class="page-header">
+  <h1>Available Tickets</h1>
+</div>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Event description</th>
+      <th>Event Date/Time</th>
+      <th>Venue Name</th>
+      <th>City / State</th>
+      <th>Section</th>
+      <th>Row</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Discount %</th>
+      <th>Ticket type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr <% if 1-(event.asking_price/event.face_value) > 0.75 %> class = "success" <% end %>>
+        <td><%= event.event_description %></td>
+        <td><%= event.event_date_time %></td>
+        <td><%= event.venue_name %></td>
+        <td><%= event.venue_city %> / <%= event.venue_state %></td>
+        <td><%= event.section %></td>
+        <td><%= event.row %></td>
+        <td><%= event.quantity %></td>
+        <td><%= event.asking_price %></td>
+        <td><%=  number_to_percentage((1-(event.asking_price/event.face_value))*100, precision: 0) %></td>
+        <td><%= event.ticket_type %></td>
+        <td>
+          <a href="/events/<%= event.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/events/<%= event.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/delete_event/<%= event.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

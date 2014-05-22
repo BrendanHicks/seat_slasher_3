@@ -1,0 +1,192 @@
+<div class="page-header">
+  <h1>Edit Event #<%= @event.id %></h1>
+</div>
+
+<% if @event.errors.any? %>
+  <% @event.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<form action="/update_event/<%= @event.id %>" class="form-horizontal">
+  <!-- Label and input for event_description -->
+  <div class="form-group">
+    <label for="event_description" class="col-sm-2 control-label">
+      Event description
+    </label>
+    <div class="col-sm-10">
+      <textarea id="event_description" name="event_description" placeholder="Event description" class="form-control" rows="3"><%= @event.event_description %></textarea>
+    </div>
+  </div>
+
+  <!-- Label and input for event_date_time -->
+  <div class="form-group">
+    <label for="event_date_time" class="col-sm-2 control-label">
+      Event date time
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="event_date_time" name="event_date_time" placeholder="Event date time" class="form-control" value="<%= @event.event_date_time %>">
+    </div>
+  </div>
+
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id" class="col-sm-2 control-label">
+      User
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @event.user_id %>">
+    </div>
+  </div>
+
+  <!-- Label and input for venue_name -->
+  <div class="form-group">
+    <label for="venue_name" class="col-sm-2 control-label">
+      Venue name
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="venue_name" name="venue_name" placeholder="Venue name" class="form-control" value="<%= @event.venue_name %>">
+    </div>
+  </div>
+
+  <!-- Label and input for region_id -->
+  <div class="form-group">
+    <label for="region_id" class="col-sm-2 control-label">
+      Region
+    </label>
+    <div class="col-sm-10">
+      <select id="region_id" name="region_id" class="form-control">
+        <% @regions.each do |region| %>
+          <option value="<%= region.id %>" <% if @event.region_id == region.id %> selected <% end %>><%= region.region_name %></option>
+        <% end %>
+      </select>
+      <%= select_tag :region_id, options_from_collection_for_select(Region.all, :id, :region_name, @event.region_id), :class => 'form-control' %>
+    </div>
+  </div>
+
+  <!-- Label and input for venue_city -->
+  <div class="form-group">
+    <label for="venue_city" class="col-sm-2 control-label">
+      Venue city
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="venue_city" name="venue_city" placeholder="Venue city" class="form-control" value="<%= @event.venue_city %>">
+    </div>
+  </div>
+
+  <!-- Label and input for venue_state -->
+  <div class="form-group">
+    <label for="venue_state" class="col-sm-2 control-label">
+      Venue state
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="venue_state" name="venue_state" placeholder="Venue state" class="form-control" value="<%= @event.venue_state %>">
+    </div>
+  </div>
+
+  <!-- Label and input for section -->
+  <div class="form-group">
+    <label for="section" class="col-sm-2 control-label">
+      Section
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="section" name="section" placeholder="Section" class="form-control" value="<%= @event.section %>">
+    </div>
+  </div>
+
+  <!-- Label and input for row -->
+  <div class="form-group">
+    <label for="row" class="col-sm-2 control-label">
+      Row
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="row" name="row" placeholder="Row" class="form-control" value="<%= @event.row %>">
+    </div>
+  </div>
+
+  <!-- Label and input for seat_numbers -->
+  <div class="form-group">
+    <label for="seat_numbers" class="col-sm-2 control-label">
+      Seat numbers
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="seat_numbers" name="seat_numbers" placeholder="Seat numbers" class="form-control" value="<%= @event.seat_numbers %>">
+    </div>
+  </div>
+
+  <!-- Label and input for quantity -->
+  <div class="form-group">
+    <label for="quantity" class="col-sm-2 control-label">
+      Quantity
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @event.quantity %>">
+    </div>
+  </div>
+
+  <!-- Label and input for asking_price -->
+  <div class="form-group">
+    <label for="asking_price" class="col-sm-2 control-label">
+      Asking price
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="asking_price" name="asking_price" placeholder="Asking price" class="form-control" value="<%= @event.asking_price %>">
+    </div>
+  </div>
+
+  <!-- Label and input for face_value -->
+  <div class="form-group">
+    <label for="face_value" class="col-sm-2 control-label">
+      Face value
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="face_value" name="face_value" placeholder="Face value" class="form-control" value="<%= @event.face_value %>">
+    </div>
+  </div>
+
+  <!-- Label and input for ticket_type -->
+  <div class="form-group">
+    <label for="ticket_type" class="col-sm-2 control-label">
+      Ticket type
+    </label>
+    <div class="col-sm-10">
+      <select id="ticket_type" name="ticket_type" class="form-control">
+        <option value="E-Ticket"<% if @event.ticket_type == "E-Ticket" %> selected <% end %>>E-Ticket</option>
+        <option value="Hard Stock" <% if @event.ticket_type == "Hard Stock" %> selected <% end %>>Hard Stock</option>
+        <option value="Will-Call" <% if @event.ticket_type == "Will-Call" %> selected <% end %>>Will-Call</option>
+        <option value="Paperless"<% if @event.ticket_type == "Paperless" %> selected <% end %>>Paperless</option>
+      </select>
+      <% ticket_types = ["E-Ticket", "Hard Stock", "Will-Call", "Paperless"] %>
+      <%= select_tag :ticket_type, options_for_select(ticket_types, @event.ticket_type), :class => 'form-control' %>
+    </div>
+  </div>
+
+  <!-- Label and input for delivery_notes -->
+  <div class="form-group">
+    <label for="delivery_notes" class="col-sm-2 control-label">
+      Delivery notes
+    </label>
+    <div class="col-sm-10">
+      <textarea id="delivery_notes" name="delivery_notes" placeholder="Delivery notes" class="form-control" rows="3"><%= @event.delivery_notes %></textarea>
+    </div>
+  </div>
+
+  <!-- Label and input for notes -->
+  <div class="form-group">
+    <label for="notes" class="col-sm-2 control-label">
+      Notes
+    </label>
+    <div class="col-sm-10">
+      <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @event.notes %></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" value="Update Event" class="btn btn-primary">
+    </div>
+  </div>
+</form>

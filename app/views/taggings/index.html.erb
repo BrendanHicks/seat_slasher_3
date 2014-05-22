@@ -1,0 +1,42 @@
+<div class="page-header">
+  <h1>Taggings</h1>
+</div>
+
+<p><a href="/taggings/new" class="btn btn-primary">Add a New Tagging</a></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Genre</th>
+      <th>Event</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taggings.each do |tagging| %>
+      <tr>
+        <td><%= tagging.genre_id %></td>
+        <td><%= tagging.event_id %></td>
+        <td>
+          <a href="/taggings/<%= tagging.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/taggings/<%= tagging.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/delete_tagging/<%= tagging.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

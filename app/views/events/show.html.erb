@@ -1,0 +1,98 @@
+<div class="page-header">
+  <h1><%= @event.event_description %></h1>
+</div>
+
+<dl>
+  <dt>Event date time</dt>
+  <dd><%= @event.event_date_time.strftime('%m-%e-%Y %l:%M%p') %></dd>
+
+  <dt>User</dt>
+  <dd><%= @event.user_id %></dd>
+
+  <dt>Venue name</dt>
+  <dd><%= @event.venue_name %></dd>
+
+  <dt>Region</dt>
+  <dd><%= @event.region_id %></dd>
+
+  <dt>Venue city</dt>
+  <dd><%= @event.venue_city %></dd>
+
+  <dt>Venue state</dt>
+  <dd><%= @event.venue_state %></dd>
+
+  <dt>Section</dt>
+  <dd><%= @event.section %></dd>
+
+  <dt>Row</dt>
+  <dd><%= @event.row %></dd>
+
+  <dt>Seat numbers</dt>
+  <dd><%= @event.seat_numbers %></dd>
+
+  <dt>Quantity</dt>
+  <dd><%= @event.quantity %></dd>
+
+  <dt>Asking price</dt>
+  <dd><%= @event.asking_price %></dd>
+
+  <dt>Face value</dt>
+  <dd><%= @event.face_value %></dd>
+
+  <dt>Ticket type</dt>
+  <dd><%= @event.ticket_type %></dd>
+
+  <dt>Delivery notes</dt>
+  <dd><%= @event.delivery_notes %></dd>
+
+  <dt>Notes</dt>
+  <dd><%= @event.notes %></dd>
+
+</dl>
+
+
+<div class="row btn-group-lg">
+  <% @genres.each do |genre| %>
+    <div class="col-md-2">
+      <form action="/create_tagging" class="form-horizontal">
+        <!-- Label and input for genre_id -->
+
+            <input type="hidden" id="genre_id" name="genre_id" placeholder="Genre" class="form-control" value = "<%= genre.id %>">
+
+        <!-- Label and input for event_id -->
+            <input type="hidden" id="event_id" name="event_id" placeholder="Event" class="form-control" value="<%= @event.id %>">
+
+            <input type="submit" value="Tag as <%= genre.genre_name %>" class="btn btn-primary">
+
+      </form>
+    </div>
+  <% end %>
+</div>
+
+
+<div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Genre's Tagged</th>
+      <th>Remove Genre Tag</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @taggings.each do |tagging| %>
+      <tr>
+        <td><%= Genre.find(tagging.genre_id).genre_name %></td>
+        <td>
+          <form>
+            <input type="hidden" id="event_id" name="event_id" placeholder="Event" class="form-control" value="<%= @event.id %>">
+          </form>
+          <a href="/delete_tagging/<%= tagging.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

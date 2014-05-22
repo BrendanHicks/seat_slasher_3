@@ -1,0 +1,40 @@
+<div class="page-header">
+  <h1>Edit Interest #<%= @interest.id %></h1>
+</div>
+
+<% if @interest.errors.any? %>
+  <% @interest.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<form action="/update_interest/<%= @interest.id %>" class="form-horizontal">
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id" class="col-sm-2 control-label">
+      User
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @interest.user_id %>">
+    </div>
+  </div>
+
+  <!-- Label and input for genre_id -->
+  <div class="form-group">
+    <label for="genre_id" class="col-sm-2 control-label">
+      Genre
+    </label>
+    <div class="col-sm-10">
+      <input type="text" id="genre_id" name="genre_id" placeholder="Genre" class="form-control" value="<%= @interest.genre_id %>">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <input type="submit" value="Update Interest" class="btn btn-primary">
+    </div>
+  </div>
+</form>

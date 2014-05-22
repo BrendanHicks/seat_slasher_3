@@ -1,0 +1,70 @@
+<div class="page-header">
+  <h1>Events</h1>
+</div>
+
+<p><a href="/events/new" class="btn btn-primary">Add a New Event</a></p>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Event description</th>
+      <th>Event date time</th>
+      <th>User</th>
+      <th>Venue name</th>
+      <th>Region</th>
+      <th>Venue city</th>
+      <th>Venue state</th>
+      <th>Section</th>
+      <th>Row</th>
+      <th>Seat numbers</th>
+      <th>Quantity</th>
+      <th>Asking price</th>
+      <th>Discount %</th>
+      <th>Ticket type</th>
+      <th>Delivery notes</th>
+      <th>Notes</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @events.each do |event| %>
+      <tr <% if 1-(event.asking_price/event.face_value) > 0.75 %> class = "success" <% end %>>
+        <td><%= event.event_description %></td>
+        <td><%= event.event_date_time %></td>
+        <td><%= event.user_id %></td>
+        <td><%= event.venue_name %></td>
+        <td><%= Region.find(event.region_id).region_name %></td>
+        <td><%= event.venue_city %></td>
+        <td><%= event.venue_state %></td>
+        <td><%= event.section %></td>
+        <td><%= event.row %></td>
+        <td><%= event.seat_numbers %></td>
+        <td><%= event.quantity %></td>
+        <td><%= event.asking_price %></td>
+        <td><%=  number_to_percentage((1-(event.asking_price/event.face_value))*100, precision: 0) %></td>
+        <td><%= event.ticket_type %></td>
+        <td><%= event.delivery_notes %></td>
+        <td><%= event.notes %></td>
+        <td>
+          <a href="/events/<%= event.id %>" class="btn btn-primary">
+            <i class="fa fa-search-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/events/<%= event.id %>/edit" class="btn btn-warning">
+            <i class="fa fa-edit"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/delete_event/<%= event.id %>" class="btn btn-danger">
+            <i class="fa fa-trash-o"></i>
+          </a>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
