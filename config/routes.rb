@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   #READ
   get('/available_tickets', { :controller => 'available', :action => 'index'})
+  get('/tickets/:id', { :controller => 'available', :action => 'show'})
 
   # Routes for the Genre resource:
   # CREATE

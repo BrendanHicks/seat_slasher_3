@@ -1,0 +1,44 @@
+<div class="page-header text-center">
+  <h1><%= @event.event_description %></h1>
+  <h6><%= @event.event_date_time.strftime('%A') %> (<%= @event.event_date_time.strftime('%m-%e-%Y') %>) at <%=  @event.event_date_time.strftime('%l:%M%p') %></h6>
+  <h6><b>at</b></h6>
+  <h6><dd><%= @event.venue_name %> (<%= @event.venue_city %>, <%= @event.venue_state %>)</dd></h6>
+</div>
+
+
+<div class="row">
+
+  <div class="col-md-6">
+    <dl class="text-center">
+      <dt>Available Quantity</dt>
+      <dd class="event-detail-buffer-15"><%= @event.quantity %></dd>
+
+      <dt>Section | Row</dt>
+      <dd class="event-detail-buffer-15"><%= @event.section %> | <%= @event.row %></dd>
+
+      <dt>Seat numbers</dt>
+      <dd class="event-detail-buffer-15"><%= @event.seat_numbers %></dd>
+
+      <dt>Notes</dt>
+      <dd class="event-detail-buffer-15"><%= @event.notes %></dd>
+    </dl>
+  </div>
+
+
+  <div class="col-md-6">
+    <dl class="text-center">
+      <dt>Price per ticket</dt>
+      <dd class="event-detail-buffer-15">$<%= @event.asking_price %> each</dd>
+
+      <dt>Discount Percent</dt>
+      <dd class="event-detail-buffer-15"><%=  number_to_percentage((1-(@event.asking_price/@event.face_value))*100, precision: 0) %></dd>
+
+      <dt>Ticket type</dt>
+      <dd class="event-detail-buffer-15"><%= @event.ticket_type %></dd>
+
+      <dt>Delivery notes</dt>
+      <dd class="event-detail-buffer-15"><%= @event.delivery_notes %></dd>
+
+    </dl>
+  </div>
+</div>

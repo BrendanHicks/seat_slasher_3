@@ -19,7 +19,7 @@ class GenresController < ApplicationController
     if @genre.save
       redirect_to "/genres", :notice => "Genre created successfully."
     else
-      redirect_to "/genres",
+      redirect_to "/genres"
     end
   end
 
@@ -47,4 +47,6 @@ class GenresController < ApplicationController
 
     redirect_to "/genres", :notice => "Genre deleted."
   end
+
 end
+

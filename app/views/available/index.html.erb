@@ -35,7 +35,7 @@
         <td><%=  number_to_percentage((1-(event.asking_price/event.face_value))*100, precision: 0) %></td>
         <td><%= event.ticket_type %></td>
         <td>
-          <a href="/events/<%= event.id %>" class="btn btn-primary">
+          <a href="/tickets/<%= event.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
         </td>
