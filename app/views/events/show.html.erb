@@ -1,57 +1,54 @@
-<div class="page-header">
+<div class="page-header text-center">
   <h1><%= @event.event_description %></h1>
+  <h6><%= @event.event_date_time.strftime('%A') %> (<%= @event.event_date_time.strftime('%m-%e-%Y') %>) at <%=  @event.event_date_time.strftime('%l:%M%p') %></h6>
+  <h6><b>at</b></h6>
+  <h6><dd><%= @event.venue_name %> (<%= @event.venue_city %>, <%= @event.venue_state %>)</dd></h6>
 </div>
 
-<dl>
-  <dt>Event date time</dt>
-  <dd><%= @event.event_date_time.strftime('%m-%e-%Y %l:%M%p') %></dd>
 
-  <dt>User</dt>
-  <dd><%= @event.user_id %></dd>
+<div class="row">
 
-  <dt>Venue name</dt>
-  <dd><%= @event.venue_name %></dd>
+  <div class="col-md-6">
+    <dl class="text-center">
+      <dt>Available Quantity</dt>
+      <dd class="event-detail-buffer-15"><%= @event.quantity %></dd>
 
-  <dt>Region</dt>
-  <dd><%= @event.region_id %></dd>
+      <dt>Section | Row</dt>
+      <dd class="event-detail-buffer-15"><%= @event.section %> | <%= @event.row %></dd>
 
-  <dt>Venue city</dt>
-  <dd><%= @event.venue_city %></dd>
+      <dt>Seat numbers</dt>
+      <dd class="event-detail-buffer-15"><%= @event.seat_numbers %></dd>
 
-  <dt>Venue state</dt>
-  <dd><%= @event.venue_state %></dd>
-
-  <dt>Section</dt>
-  <dd><%= @event.section %></dd>
-
-  <dt>Row</dt>
-  <dd><%= @event.row %></dd>
-
-  <dt>Seat numbers</dt>
-  <dd><%= @event.seat_numbers %></dd>
-
-  <dt>Quantity</dt>
-  <dd><%= @event.quantity %></dd>
-
-  <dt>Asking price</dt>
-  <dd><%= @event.asking_price %></dd>
-
-  <dt>Face value</dt>
-  <dd><%= @event.face_value %></dd>
-
-  <dt>Ticket type</dt>
-  <dd><%= @event.ticket_type %></dd>
-
-  <dt>Delivery notes</dt>
-  <dd><%= @event.delivery_notes %></dd>
-
-  <dt>Notes</dt>
-  <dd><%= @event.notes %></dd>
-
-</dl>
+      <dt>Notes</dt>
+      <dd class="event-detail-buffer-15"><%= @event.notes %></dd>
+    </dl>
+  </div>
 
 
-<div class="row btn-group-lg">
+  <div class="col-md-6">
+    <dl class="text-center">
+      <dt>Price per ticket</dt>
+      <dd class="event-detail-buffer-15">$<%= @event.asking_price %> each</dd>
+
+      <dt>Discount Percent</dt>
+      <dd class="event-detail-buffer-15"><%=  number_to_percentage((1-(@event.asking_price/@event.face_value))*100, precision: 0) %></dd>
+
+      <dt>Ticket type</dt>
+      <dd class="event-detail-buffer-15"><%= @event.ticket_type %></dd>
+
+      <dt>Delivery notes</dt>
+      <dd class="event-detail-buffer-15"><%= @event.delivery_notes %></dd>
+
+    </dl>
+  </div>
+</div>
+
+<div class="page-header text-center">
+  <h2>Genre Tagging</h2>
+</div>
+
+
+<div class="row btn-group-lg event-detail-buffer-15" >
   <% @genres.each do |genre| %>
     <div class="col-md-2">
       <form action="/create_tagging" class="form-horizontal">

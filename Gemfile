@@ -41,3 +41,5 @@ gem 'starter_generators', :git => "git://github.com/rbetina/starter_generators.g
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
+gem 'dwolla-ruby'

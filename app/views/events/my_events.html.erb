@@ -1,42 +1,48 @@
 <div class="page-header">
-  <h1>Available Tickets</h1>
-  <h5 class="subtitle">Currently available tickets that match preferences.</h5>
+  <h1>My Broadcast Events</h1>
+  <h5 class="subtitle">Active tickets currently listed for sale.</h5>
 </div>
+
+<p><a href="/events/new" class="btn btn-primary">Add a New Event</a></p>
 
 <table class="table table-hover table_center">
   <thead>
     <tr>
       <th>Event description</th>
-      <th>Event Date/Time</th>
-      <th>Venue Name</th>
-      <th>City / State</th>
+      <th>Event date time</th>
+      <th>Venue name</th>
+      <th>Region</th>
+      <th>Venue city</th>
+      <th>Venue state</th>
       <th>Section</th>
       <th>Row</th>
+      <th>Seat numbers</th>
       <th>Quantity</th>
-      <th>Price</th>
-      <th>Discount %</th>
+      <th>Asking price</th>
       <th>Ticket type</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>View</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
   </thead>
 
   <tbody>
     <% @events.each do |event| %>
-      <tr <% if 1-(event.asking_price/event.face_value) > 0.75 %> class = "success" <% end %>>
+      <tr>
         <td><%= event.event_description %></td>
         <td><%= event.event_date_time %></td>
         <td><%= event.venue_name %></td>
-        <td><%= event.venue_city %> / <%= event.venue_state %></td>
+        <td><%= Region.find(event.region_id).region_name %></td>
+        <td><%= event.venue_city %></td>
+        <td><%= event.venue_state %></td>
         <td><%= event.section %></td>
         <td><%= event.row %></td>
+        <td><%= event.seat_numbers %></td>
         <td><%= event.quantity %></td>
-        <td><%= event.asking_price %></td>
-        <td><%=  number_to_percentage((1-(event.asking_price/event.face_value))*100, precision: 0) %></td>
+        <td>$<%= event.asking_price %></td>
         <td><%= event.ticket_type %></td>
         <td>
-          <a href="/tickets/<%= event.id %>" class="btn btn-primary">
+          <a href="/events/<%= event.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>
           </a>
         </td>

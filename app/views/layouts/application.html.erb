@@ -39,18 +39,25 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+        <% if current_user.present? %>
+          <li><a href="/">Home</a></li>
+          <li><a href="/available_tickets">Available Tickets</a></li>
+          <li><a href="/my_events">My Events</a></li>
+        <% else %>
+          <li><a href="#">Home</a></li>
+          <li><a href="#testimonial">Testimonials</a></li>
+          <li><a href="#FAQ">About Us</a></li>
+        <% end %>
         <li><a href="/events">Events</a></li>
         <li><a href="/genres">Genres</a></li>
         <li><a href="/regions">Regions</a></li>
         <li><a href="/taggings">Taggings</a></li>
         <li><a href="/interests">Interests</a></li>
-        <li><a href="/available_tickets">Available Tickets</a></li>
-        <li><a href="#">About</a></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <% if false %>
-          <li><a href="/users/edit">Oscar the Grouch</a></li>
+        <% if current_user.present? %>
+          <li><a href="/users/edit"><%= current_user.email %></a></li>
           <li><a href="/users/sign_out" data-method="delete">Sign out</a></li>
         <% else %>
           <li><a href="/users/sign_up">Sign up</a></li>

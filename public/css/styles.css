@@ -1,8 +1,21 @@
 .top-buffer-100{
-  margin-top: 100px;
+  margin-top: 60px;
+}
+
+.subtitle{
+  margin-left: 15px;
 }
 
 
 .event-detail-buffer-15{
   margin-bottom: 15px;
+}
+
+
+.table_center td {
+   text-align: center;
+}
+
+.table_center th {
+  text-align: center;
 }

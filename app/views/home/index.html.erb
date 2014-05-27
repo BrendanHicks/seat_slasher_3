@@ -10,7 +10,13 @@
       Save Money by signing up for alerts for tickets under face value.
     </p>
 
-    <button type="button" class="btn btn-primary btn-lg"><b><span class="glyphicon glyphicon-plus"></span>  Get Started!</b></button>
+    <% if current_user.present? %>
+      <a href="/available_tickets">
+    <% else %>
+      <a href="/users/sign_up">
+    <% end %>
+      <button type="button" class="btn btn-primary btn-lg"><b><span class="glyphicon glyphicon-plus"></span>  Get Started!</b></button>
+    </a>
 <a id="testimonial"></a>
   </div>
 </div>

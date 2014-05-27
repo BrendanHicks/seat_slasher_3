@@ -33,16 +33,6 @@
     </div>
   </div>
 
-  <!-- Label and input for user_id -->
-  <div class="form-group">
-    <label for="user_id" class="col-sm-2 control-label">
-      User
-    </label>
-    <div class="col-sm-10">
-      <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @event.user_id %>">
-    </div>
-  </div>
-
   <!-- Label and input for venue_name -->
   <div class="form-group">
     <label for="venue_name" class="col-sm-2 control-label">
@@ -181,6 +171,14 @@
       <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @event.notes %></textarea>
     </div>
   </div>
+
+  <% @genres.each do |genre| %>
+  <div class="checkbox-inline">
+    <label>
+      <input type="checkbox" id="<%= genre.genre_name %>" value="<%= genre.id %>"> <%= genre.genre_name %>
+    </label>
+  </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

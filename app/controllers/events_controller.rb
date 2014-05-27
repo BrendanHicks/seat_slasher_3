@@ -2,25 +2,32 @@ class EventsController < ApplicationController
   def index
     @events = Event.all
 
+  end
+
+  def my_events
+    @events_1 = Event.where(user_id: current_user.id).order("event_date_time asc")
+    @events = @events_1.order("event_date_time desc")
 
   end
 
   def show
     @event = Event.find(params[:id])
-    @genres = Genre.all
+    @genres = Genre.all.order(:genre_name)
     @taggings = Event.find(params[:id]).taggings
   end
 
   def new
     @event = Event.new
     @regions = Region.all
+    @genres = Genre.all
   end
 
   def create
     @event = Event.new
+    @tagging = Tagging.new
     @event.event_description = params[:event_description]
     @event.event_date_time = params[:event_date_time]
-    @event.user_id = params[:user_id]
+    @event.user_id = current_user.id
     @event.venue_name = params[:venue_name]
     @event.region_id = params[:region_id]
     @event.venue_city = params[:venue_city]
@@ -35,8 +42,9 @@ class EventsController < ApplicationController
     @event.delivery_notes = params[:delivery_notes]
     @event.notes = params[:notes]
 
+
     if @event.save
-      redirect_to "/events", :notice => "Event created successfully."
+      redirect_to "/my_events", :notice => "Event created successfully."
     else
       render 'new'
     end
@@ -52,7 +60,7 @@ class EventsController < ApplicationController
 
     @event.event_description = params[:event_description]
     @event.event_date_time = params[:event_date_time]
-    @event.user_id = params[:user_id]
+    @event.user_id = current_user.id
     @event.venue_name = params[:venue_name]
     @event.region_id = params[:region_id]
     @event.venue_city = params[:venue_city]
@@ -68,7 +76,7 @@ class EventsController < ApplicationController
     @event.notes = params[:notes]
 
     if @event.save
-      redirect_to "/events", :notice => "Event updated successfully."
+      redirect_to "/my_events", :notice => "Event updated successfully."
     else
       render 'edit'
     end
