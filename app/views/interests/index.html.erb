@@ -11,7 +11,7 @@
 
             <% int = Interest.find_by({ :user_id => current_user.id, :genre_id => genre.id }) %>
             <a href="/delete_interest/<%= int.id %>" class="btn btn-danger">
-              <i class="fa fa-heart"></i>
+              <i class="fa fa-trash-o"></i>
             </a>
 
             <input type="hidden" id="interest_id" name="interest_id" placeholder="Genre" class="form-control" value = "<%= int.id %>">

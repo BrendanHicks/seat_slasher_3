@@ -18,7 +18,7 @@
       <th>Ticket type</th>
       <th></th>
       <th></th>
-      <th></th>
+      <th>Contact Seller</th>
     </tr>
   </thead>
 
@@ -46,8 +46,8 @@
           </a>
         </td>
         <td>
-          <a href="/delete_event/<%= event.id %>" class="btn btn-danger">
-            <i class="fa fa-trash-o"></i>
+          <a href='https://mail.google.com/mail/?view=cm&ui=2&tf=0&fs=1&to=<%= User.find(event.user_id).email.gsub(/[@]/, '%40') %>&su=SEAT+SLASHER+REQUEST+%2D+<%= event.event_description %>&body=Hello,%0a%0aI+am+interested+in+the+tickets+you+have+listed+on+Seat+Slasher.' target="_blank" class="btn btn-primary">
+            <i class="fa fa-envelope-o"></i>
           </a>
         </td>
       </tr>

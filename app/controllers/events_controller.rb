@@ -10,7 +10,7 @@ class EventsController < ApplicationController
 
   def signed_in_user_must_be_owner
     if @event.user_id != current_user.id
-      redirect_to root_url, :notice => "Nice try, suckah"
+      redirect_to root_url, :notice => "You have in"
     end
   end
 
@@ -40,7 +40,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @tagging = Tagging.new
     @event.event_description = params[:event_description]
-    @event.event_date_time = params[:event_date_time]
+    @event.event_date_time = DateTime.strptime(params[:event_date_time], "%d/%m/%Y %H:%M:%S")
     @event.user_id = current_user.id
     @event.venue_name = params[:venue_name]
     @event.region_id = params[:region_id]
