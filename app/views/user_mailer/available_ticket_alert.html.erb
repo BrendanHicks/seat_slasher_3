@@ -4,12 +4,30 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi Brendan,</h1>
+    <h1>We have found some tickets to <%= @event.event_description %>!</h1>
     <p>
-
+      See Below:
     </p>
     <p>
-      To login to the site, just follow this link: <%= @event.event_description %>.
+      <dl class="dl-horizontal">
+        <dt><b>Venue</b></dt>
+        <dd><%= @event.venue_name %></dd>
+        <dt><b>City, State</b></dt>
+        <dd><%= @event.venue_city %>, <%= @event.venue_state %></dd>
+        <dt><b>Event Date</b></dt>
+        <dd><%= @event.event_date_time.strftime('%A') %> (<%= @event.event_date_time.strftime('%D') %>)</dd>
+        <dt><b>Section | Row</b></dt>
+        <dd><%= @event.section %> | <%= @event.row %></dd>
+        <dt><b>Quantity</b></dt>
+        <dd><%= @event.quantity %></dd>
+        <dt><b>Price Per Ticket</b></dt>
+        <dd>$<%= @event.asking_price %> each</dd>
+        <dt><b>Discount %</b></dt>
+        <dd><%=  number_to_percentage((1-(@event.asking_price/@event.face_value))*100, precision: 0) %></dd>
+      </dl>
+    </p>
+    <p>
+      To login to the site, just follow this link: <a href="http://www.google.com">Seat Slasher</a>.
     </p>
   </body>
 </html>

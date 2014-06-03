@@ -10,9 +10,9 @@ class AvailableController < ApplicationController
 
   def show
 
-    @user = current_user
+    @users = @interested_users
     @event = Event.find(params[:id])
-    UserMailer.available_ticket_alert(@event, @user).deliver
+    UserMailer.available_ticket_alert(@event, @users).deliver
 
   end
 

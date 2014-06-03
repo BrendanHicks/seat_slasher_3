@@ -12,4 +12,5 @@ class User < ActiveRecord::Base
   has_many :interested_events, :through => :taggings, :source => :event
   has_many :favorite_genres, :through => :interests, :source => :genre
 
+
 end

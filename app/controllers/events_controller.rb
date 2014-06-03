@@ -28,6 +28,19 @@ class EventsController < ApplicationController
   def show
     @genres = Genre.all.order(:genre_name)
     @taggings = Event.find(params[:id]).taggings
+
+
+    @event = Event.find(params[:id])
+    @users = @event.interested_users.where.not(id: current_user.id)
+      @interested_emails_array = []
+
+      @users.each do |user|
+
+        email = user.email
+          @interested_emails_array.push email
+      end
+
+      @final = @interested_emails_array.join(",")
   end
 
   def new
@@ -105,9 +118,19 @@ class EventsController < ApplicationController
 
   def email
 
-    @event = Event.find(params[:id])
 
-    UserMailer.available_ticket_alert(@user).deliver
+    @event = Event.find(params[:id])
+    @users = @event.interested_users
+
+    interested_emails_array = []
+    @users.each do |user|
+
+      email = user.email
+        interested_emails_array.push email
+    end
+
+    @interested_users = interested_emails_array.join(",")
+    UserMailer.available_ticket_alert(@event, @users).deliver
 
     redirect_to "/my_events", :notice => "Notification Sent"
 
