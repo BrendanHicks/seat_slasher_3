@@ -1,6 +1,7 @@
 class InterestsController < ApplicationController
   def index
     @interests = Interest.all
+    @genres = Genre.all
   end
 
   def show
@@ -13,7 +14,7 @@ class InterestsController < ApplicationController
 
   def create
     @interest = Interest.new
-    @interest.user_id = params[:user_id]
+    @interest.user_id = current_user.id
     @interest.genre_id = params[:genre_id]
 
     if @interest.save
@@ -45,6 +46,6 @@ class InterestsController < ApplicationController
 
     @interest.destroy
 
-    redirect_to "/interests", :notice => "Interest deleted."
+    redirect_to "/interests", :alert => "Interest deleted."
   end
 end

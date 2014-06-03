@@ -28,9 +28,13 @@
       Event date time
     </label>
     <div class="col-sm-10">
-      <input type="text" id="event_date_time" name="event_date_time" placeholder="Event date time" class="form-control" value="<%= @event.event_date_time %>">
+      <input type="text" id="datepicker" name="event_date_time" placeholder="Event date time" class="form-control" value="<%= @event.event_date_time.strftime('%D') %>">
     </div>
   </div>
+
+      <script type="text/javascript">
+        $('#datepicker').datepicker();
+      </script>
 
   <!-- Label and input for venue_name -->
   <div class="form-group">

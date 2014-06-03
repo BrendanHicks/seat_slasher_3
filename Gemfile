@@ -27,6 +27,8 @@ gem 'devise'
 
 gem 'starter_generators', :git => "git://github.com/rbetina/starter_generators.git", :branch => "kiei925"
 
+gem 'tlsmail'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

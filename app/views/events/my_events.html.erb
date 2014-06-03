@@ -23,6 +23,7 @@
       <th>View</th>
       <th>Edit</th>
       <th>Delete</th>
+      <th>Notify</th>
     </tr>
   </thead>
 
@@ -30,7 +31,7 @@
     <% @events.each do |event| %>
       <tr>
         <td><%= event.event_description %></td>
-        <td><%= event.event_date_time %></td>
+        <td><%= event.event_date_time.strftime('%D') %></td>
         <td><%= event.venue_name %></td>
         <td><%= Region.find(event.region_id).region_name %></td>
         <td><%= event.venue_city %></td>
@@ -52,8 +53,12 @@
           </a>
         </td>
         <td>
-          <a href="/delete_event/<%= event.id %>" class="btn btn-danger">
-            <i class="fa fa-trash-o"></i>
+            <%= link_to '<i class="fa fa-trash-o"></i>'.html_safe, "/delete_event/#{event.id}", data: { confirm: 'Are you sure?' }, :class => "btn btn-danger"  %>
+          </a>
+        </td>
+        <td>
+          <a href="/email_event/<%= event.id %>" class="btn btn-danger">
+            <i class="fa fa-envelope-o"></i>
           </a>
         </td>
       </tr>

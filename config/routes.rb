@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 
   # DELETE
   get('/delete_event/:id', { :controller => 'events', :action => 'destroy' })
+
+  # EMAIL EVENT
+  get('email_event/:id', { :controller => 'events', :action => 'email'})
   #------------------------------
 
   # Routes for the Available Tickets resource:
@@ -94,6 +97,7 @@ Rails.application.routes.draw do
   # DELETE
   get('/delete_interest/:id', { :controller => 'interests', :action => 'destroy' })
   #------------------------------
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

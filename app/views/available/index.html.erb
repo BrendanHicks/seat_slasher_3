@@ -26,7 +26,7 @@
     <% @events.each do |event| %>
       <tr <% if 1-(event.asking_price/event.face_value) > 0.75 %> class = "success" <% end %>>
         <td><%= event.event_description %></td>
-        <td><%= event.event_date_time %></td>
+        <td><%= event.event_date_time.strftime('%D') %></td>
         <td><%= event.venue_name %></td>
         <td><%= event.venue_city %> / <%= event.venue_state %></td>
         <td><%= event.section %></td>

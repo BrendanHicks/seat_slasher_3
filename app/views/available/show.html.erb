@@ -1,6 +1,6 @@
 <div class="page-header text-center">
   <h1><%= @event.event_description %></h1>
-  <h6><%= @event.event_date_time.strftime('%A') %> (<%= @event.event_date_time.strftime('%m-%e-%Y') %>) at <%=  @event.event_date_time.strftime('%l:%M%p') %></h6>
+  <h6><%= @event.event_date_time.strftime('%A') %> (<%= @event.event_date_time.strftime('%D') %>) at <%=  @event.event_date_time.strftime('%l:%M%p') %></h6>
   <h6><b>at</b></h6>
   <h6><dd><%= @event.venue_name %> (<%= @event.venue_city %>, <%= @event.venue_state %>)</dd></h6>
 </div>

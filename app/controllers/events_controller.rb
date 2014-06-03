@@ -1,4 +1,19 @@
 class EventsController < ApplicationController
+
+  before_action(:set_event, :only => [:show, :edit, :destroy, :update])
+  before_action(:signed_in_user_must_be_owner, :only => [:edit, :destroy, :update])
+
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  def signed_in_user_must_be_owner
+    if @event.user_id != current_user.id
+      redirect_to root_url, :notice => "Nice try, suckah"
+    end
+  end
+
   def index
     @events = Event.all
 
@@ -11,7 +26,6 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find(params[:id])
     @genres = Genre.all.order(:genre_name)
     @taggings = Event.find(params[:id]).taggings
   end
@@ -83,10 +97,19 @@ class EventsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(params[:id])
 
     @event.destroy
 
-    redirect_to "/events", :notice => "Event deleted."
+    redirect_to "/my_events", :notice => "Event deleted."
+  end
+
+  def email
+
+    @event = Event.find(params[:id])
+
+    UserMailer.available_ticket_alert(@user).deliver
+
+    redirect_to "/my_events", :notice => "Notification Sent"
+
   end
 end

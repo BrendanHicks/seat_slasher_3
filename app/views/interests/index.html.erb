@@ -1,42 +1,36 @@
 <div class="page-header">
-  <h1>Interests</h1>
+  <h1>Genre Notifications</h1>
+  <h5 class="subtitle">Select Genres For Which You Would Like to Receive Notifications</h5>
 </div>
 
-<p><a href="/interests/new" class="btn btn-primary">Add a New Interest</a></p>
+<div class="row btn-group-lg event-detail-buffer-15" >
+  <% @genres.each do |genre| %>
+    <div class="col-md-2">
+      <% if current_user.favorite_genres.include?(genre) %>
+        <form action="/delete_interest" class="form-horizontal">
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Genre</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+            <% int = Interest.find_by({ :user_id => current_user.id, :genre_id => genre.id }) %>
+            <a href="/delete_interest/<%= int.id %>" class="btn btn-danger">
+              <i class="fa fa-heart"></i>
+            </a>
 
-  <tbody>
-    <% @interests.each do |interest| %>
-      <tr>
-        <td><%= interest.user_id %></td>
-        <td><%= interest.genre_id %></td>
-        <td>
-          <a href="/interests/<%= interest.id %>" class="btn btn-primary">
-            <i class="fa fa-search-plus"></i>
-          </a>
-        </td>
-        <td>
-          <a href="/interests/<%= interest.id %>/edit" class="btn btn-warning">
-            <i class="fa fa-edit"></i>
-          </a>
-        </td>
-        <td>
-          <a href="/delete_interest/<%= interest.id %>" class="btn btn-danger">
-            <i class="fa fa-trash-o"></i>
-          </a>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <input type="hidden" id="interest_id" name="interest_id" placeholder="Genre" class="form-control" value = "<%= int.id %>">
+
+            <input type="submit" value="<%= genre.genre_name %>" class="btn btn-primary">
+
+        <% else %>
+          <form action="/create_interest" class="form-horizontal">
+            <a href="/create_interest?genre_id=<%= genre.id %>" class="btn btn-success">
+              <i class="fa fa-heart-o"></i>
+            </a>
+
+              <input type="hidden" id="genre_id" name="genre_id" placeholder="Genre" class="form-control" value = "<%= genre.id %>">
+
+              <input type="submit" value="<%= genre.genre_name %>" class="btn btn-primary">
+
+        <% end %>
+      </form>
+    </div>
+  <% end %>
+</div>
 

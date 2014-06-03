@@ -2,10 +2,8 @@ class AvailableController < ApplicationController
 
   def index
 
-    @my_region = Region.last.id
-
-    @events = User.
-    @events2 = Event.where(region_id: @my_region)
+    @my_region = current_user.region_id
+    @events = Event.where(region_id: @my_region)
 
   end
 
