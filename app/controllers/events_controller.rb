@@ -95,7 +95,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
 
     @event.event_description = params[:event_description]
-    @event.event_date_time = params[:event_date_time]
+    @event.event_date_time = Date.strptime(params[:event_date_time], "%m/%d/%Y")
     @event.user_id = current_user.id
     @event.venue_name = params[:venue_name]
     @event.region_id = params[:region_id]
