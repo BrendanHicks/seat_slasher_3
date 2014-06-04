@@ -96,6 +96,7 @@ Rails.application.routes.draw do
 
   # DELETE
   get('/delete_interest/:id', { :controller => 'interests', :action => 'destroy' })
+  get('/delete_interest', { :controller => 'interests', :action => 'destroy_with_form'})
   #------------------------------
 
 

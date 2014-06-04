@@ -41,6 +41,15 @@ class InterestsController < ApplicationController
     end
   end
 
+  def destroy_with_form
+
+    @interest = Interest.find(params[:interest_id])
+
+    @interest.destroy
+
+    redirect_to "/interests", :alert => "Interest deleted."
+  end
+
   def destroy
     @interest = Interest.find(params[:id])
 
@@ -48,4 +57,5 @@ class InterestsController < ApplicationController
 
     redirect_to "/interests", :alert => "Interest deleted."
   end
+
 end

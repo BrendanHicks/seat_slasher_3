@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Edit Event #<%= @event.id %></h1>
+  <h1>Edit <%= @event.event_description %></h1>
 </div>
 
 <% if @event.errors.any? %>
@@ -11,7 +11,7 @@
   <% end %>
 <% end %>
 
-<form action="/update_event/<%= @event.id %>" class="form-horizontal">
+<form action="/update_event/<%= @event.id %>" class="form-horizontal well">
   <!-- Label and input for event_description -->
   <div class="form-group">
     <label for="event_description" class="col-sm-2 control-label">

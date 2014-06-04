@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :interests, :dependent => :destroy
   has_many :genres, :through => :interests
   has_many :taggings, :through => :genres
-  has_many :interested_events, :through => :taggings, :source => :event
+  has_many :interested_events, -> {uniq}, :through => :taggings, :source => :event
   has_many :favorite_genres, :through => :interests, :source => :genre
 
 

@@ -19,3 +19,9 @@
 .table_center th {
   text-align: center;
 }
+
+.thumbnail img { min-height:50px; height:200px; }
+
+.img-circle img{ min-height:50px; height:150px; ;}
+
+.FAQ-A-Indent { text-indent: 25px;}
