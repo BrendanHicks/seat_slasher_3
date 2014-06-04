@@ -19,7 +19,7 @@
       Event description
     </label>
     <div class="col-sm-10">
-      <textarea id="event_description" name="event_description" placeholder="Event description" class="form-control" rows="3"><%= @event.event_description %></textarea>
+      <textarea id="event_description" name="event_description" placeholder="Event description" class="form-control" rows="3" required="required"><%= @event.event_description %></textarea>
     </div>
   </div>
 
@@ -29,7 +29,7 @@
       Event date time
     </label>
     <div class="col-sm-10">
-      <input type="text" id="datepicker" name="event_date_time" placeholder="Event date time" class="form-control" value="<%= @event.event_date_time %>">
+      <input type="text" id="datepicker" name="event_date_time" placeholder="Event date time" class="form-control" value="<%= @event.event_date_time %>" required="required">
 
       <script type="text/javascript">
         $('#datepicker').datepicker()
@@ -118,7 +118,7 @@
       Quantity
     </label>
     <div class="col-sm-10">
-      <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @event.quantity %>">
+      <input type="text" id="quantity" name="quantity" placeholder="Quantity" class="form-control" value="<%= @event.quantity %>" required="required">
     </div>
   </div>
 
@@ -128,7 +128,7 @@
       Asking price
     </label>
     <div class="col-sm-10">
-      <input type="text" id="asking_price" name="asking_price" placeholder="Asking price" class="form-control" value="<%= @event.asking_price %>">
+      <input type="text" id="asking_price" name="asking_price" placeholder="Asking price" class="form-control" value="<%= @event.asking_price %>" required="required">
     </div>
   </div>
 
@@ -138,7 +138,7 @@
       Face value
     </label>
     <div class="col-sm-10">
-      <input type="text" id="face_value" name="face_value" placeholder="Face value" class="form-control" value="<%= @event.face_value %>">
+      <input type="text" id="face_value" name="face_value" placeholder="Face value" class="form-control" value="<%= @event.face_value %>" required="required">
     </div>
   </div>
 

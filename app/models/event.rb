@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
 
+
+
   belongs_to :region
   belongs_to :selling_user, :class_name => "User"
   has_many :taggings

@@ -22,7 +22,7 @@
   </thead>
 
   <tbody>
-    <% @events.each do |event| %>
+    <% @interested_events.each do |event| %>
       <tr <% if 1-(event.asking_price/event.face_value) > 0.75 %> class = "success" <% end %>>
         <td><%= event.event_description %></td>
         <td><%= event.event_date_time.strftime('%D') %></td>
@@ -40,7 +40,7 @@
           </a>
         </td>
         <td>
-          <a href='https://mail.google.com/mail/?view=cm&ui=2&tf=0&fs=1&to=<%= User.find(event.user_id).email.gsub(/[@]/, '%40') %>&su=SEAT+SLASHER+REQUEST+%2D+<%= event.event_description %>&body=Hello,%0a%0aI+am+interested+in+the+tickets+you+have+listed+on+Seat+Slasher.' target="_blank" class="btn btn-primary">
+          <a href='https://mail.google.com/mail/?view=cm&ui=2&tf=0&fs=1&to=<%= User.find(event.user_id).email.gsub(/[@]/, '%40') %>&su=SEAT+SLASHER+REQUEST+%2D+<%= event.event_description %>&body=Hello,%0a%0aI+am+interested+in+the+tickets+you+have+listed+on+Seat+Slasher.' target="_blank" class="btn btn-warning">
             <i class="fa fa-envelope-o"></i>
           </a>
         </td>

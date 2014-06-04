@@ -2,6 +2,8 @@ class EventsController < ApplicationController
 
   before_action(:set_event, :only => [:show, :edit, :destroy, :update])
   before_action(:signed_in_user_must_be_owner, :only => [:edit, :destroy, :update])
+  before_action(:signed_in_user_must_be_admin, :only => [:index])
+
 
 
   def set_event
@@ -10,9 +12,16 @@ class EventsController < ApplicationController
 
   def signed_in_user_must_be_owner
     if @event.user_id != current_user.id
-      redirect_to root_url, :notice => "You have in"
+      redirect_to root_url, :alert => "You Have Insufficient Privileges."
     end
   end
+
+  def signed_in_user_must_be_admin
+    if current_user.id != 6
+      redirect_to root_url, :alert => "You Have Insufficient Privileges."
+    end
+  end
+
 
   def index
     @events = Event.all
@@ -31,7 +40,7 @@ class EventsController < ApplicationController
 
 
     @event = Event.find(params[:id])
-    @users = @event.interested_users.where.not(id: current_user.id)
+    @users = @event.interested_users.where(region_id: @event.region_id).where.not(id: current_user.id)
       @interested_emails_array = []
 
       @users.each do |user|
@@ -53,7 +62,7 @@ class EventsController < ApplicationController
     @event = Event.new
     @tagging = Tagging.new
     @event.event_description = params[:event_description]
-    @event.event_date_time = params[:event_date_time]
+    @event.event_date_time = Date.strptime(params[:event_date_time], "%m/%d/%Y")
     @event.user_id = current_user.id
     @event.venue_name = params[:venue_name]
     @event.region_id = params[:region_id]
