@@ -9,7 +9,7 @@ class UserMailer < ActionMailer::Base
   def available_ticket_alert(event, user)
     @event = event
     @users = user
-    mail(:bcc => user, :subject => "Testing 1,2,3" )
+    mail(:bcc => @users, :subject => "Testing 1,2,3" )
   end
 
 

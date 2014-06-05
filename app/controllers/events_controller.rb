@@ -139,7 +139,7 @@ class EventsController < ApplicationController
     end
 
     @interested_users = interested_emails_array.join(",")
-    UserMailer.available_ticket_alert(@event, @users).deliver
+    UserMailer.available_ticket_alert(@event, @interested_users).deliver
 
     redirect_to "/my_events", :notice => "Notification Sent"
 

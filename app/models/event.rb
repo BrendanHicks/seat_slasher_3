@@ -7,7 +7,7 @@ class Event < ActiveRecord::Base
   has_many :taggings
   has_many :genres, :through => :taggings
   has_many :interests, :through => :genres
-  has_many :interested_users, :through => :genres, :source => :users
+  has_many :interested_users, -> {uniq}, :through => :genres, :source => :users
 
 #   before_save :update_discount
 
