@@ -6,10 +6,11 @@ class UserMailer < ActionMailer::Base
     mail(:to => user.email, :subject =>  "Welcome to My Awesome Site")
   end
 
-  def available_ticket_alert(event, user)
+  def available_ticket_alert(event, user, subject)
     @event = event
     @users = user
-    mail(:bcc => @users, :subject => "Testing 1,2,3" )
+    @subject = subject
+    mail(:bcc => @users, :subject => subject )
   end
 
 

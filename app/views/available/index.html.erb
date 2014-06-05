@@ -18,11 +18,12 @@
       <th>Ticket type</th>
       <th>More Info</th>
       <th>Contact Seller</th>
+      <th></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @interested_events.each do |event| %>
+    <% @events.each do |event| %>
       <tr <% if 1-(event.asking_price/event.face_value) > 0.75 %> class = "success" <% end %>>
         <td><%= event.event_description %></td>
         <td><%= event.event_date_time.strftime('%D') %></td>
@@ -34,6 +35,7 @@
         <td><%= event.asking_price %></td>
         <td><%=  number_to_percentage((1-(event.asking_price/event.face_value))*100, precision: 0) %></td>
         <td><%= event.ticket_type %></td>
+        <td><%= event.region_id %></td>
         <td>
           <a href="/tickets/<%= event.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>

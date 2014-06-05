@@ -130,6 +130,7 @@ class EventsController < ApplicationController
 
     @event = Event.find(params[:id])
     @users = @event.interested_users
+    @subject = "Discount Tickets Available - #{@event.event_description}"
 
     interested_emails_array = []
     @users.each do |user|
@@ -139,7 +140,7 @@ class EventsController < ApplicationController
     end
 
     @interested_users = interested_emails_array.join(",")
-    UserMailer.available_ticket_alert(@event, @interested_users).deliver
+    UserMailer.available_ticket_alert(@event, @interested_users, @subject).deliver
 
     redirect_to "/my_events", :notice => "Notification Sent"
 
