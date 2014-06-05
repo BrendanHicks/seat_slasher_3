@@ -18,7 +18,6 @@
       <th>Ticket type</th>
       <th>More Info</th>
       <th>Contact Seller</th>
-      <th></th>
     </tr>
   </thead>
 
@@ -35,7 +34,6 @@
         <td><%= event.asking_price %></td>
         <td><%=  number_to_percentage((1-(event.asking_price/event.face_value))*100, precision: 0) %></td>
         <td><%= event.ticket_type %></td>
-        <td><%= event.region_id %></td>
         <td>
           <a href="/tickets/<%= event.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>

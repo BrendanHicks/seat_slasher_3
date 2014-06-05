@@ -180,7 +180,7 @@
   <% @genres.each do |genre| %>
   <div class="checkbox-inline">
     <label>
-      <input type="checkbox" id="<%= genre.genre_name %>" value="<%= genre.id %>"> <%= genre.genre_name %>
+      <input type="checkbox" id="<%= genre.genre_name %>" name="genre_<%= genre.id %>" value="1"> <%= genre.genre_name %>
     </label>
   </div>
   <% end %>

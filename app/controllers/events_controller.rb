@@ -78,6 +78,9 @@ class EventsController < ApplicationController
     @event.delivery_notes = params[:delivery_notes]
     @event.notes = params[:notes]
 
+    @genre.each do |genre|
+
+    end
 
     if @event.save
       redirect_to "/my_events", :notice => "Event created successfully."
@@ -140,9 +143,13 @@ class EventsController < ApplicationController
     end
 
     @interested_users = interested_emails_array.join(",")
-    UserMailer.available_ticket_alert(@event, @interested_users, @subject).deliver
 
-    redirect_to "/my_events", :notice => "Notification Sent"
+    if @users.blank?
+      redirect_to "/my_events", :alert => "No Interested Users At This Time."
+    else
+      UserMailer.available_ticket_alert(@event, @interested_users, @subject).deliver
 
+      redirect_to "/my_events", :notice => "Notification Sent"
+    end
   end
 end
