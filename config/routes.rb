@@ -78,7 +78,7 @@ Rails.application.routes.draw do
   get('/update_tagging/:id', { :controller => 'taggings', :action => 'update' })
 
   # DELETE
-  get('/delete_tagging/:id', { :controller => 'taggings', :action => 'destroy' })
+  get('/delete_tagging/:id/:event_id', { :controller => 'taggings', :action => 'destroy' })
   #------------------------------
 
   # Routes for the Interest resource:

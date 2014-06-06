@@ -37,19 +37,7 @@ class EventsController < ApplicationController
   def show
     @genres = Genre.all.order(:genre_name)
     @taggings = Event.find(params[:id]).taggings
-
-
     @event = Event.find(params[:id])
-    @users = @event.interested_users.where(region_id: @event.region_id).where.not(id: current_user.id)
-      @interested_emails_array = []
-
-      @users.each do |user|
-
-        email = user.email
-          @interested_emails_array.push email
-      end
-
-      @final = @interested_emails_array.join(",")
   end
 
   def new

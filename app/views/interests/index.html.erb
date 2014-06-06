@@ -17,7 +17,7 @@
             <input type="hidden" id="interest_id" name="interest_id" placeholder="Genre" class="form-control" value = "<%= int.id %>">
 
             <input type="submit" value="<%= genre.genre_name %>" class="btn btn-primary">
-
+        </form>
         <% else %>
           <form action="/create_interest" class="form-horizontal">
             <a href="/create_interest?genre_id=<%= genre.id %>" class="btn btn-success">
