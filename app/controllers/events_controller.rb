@@ -66,10 +66,6 @@ class EventsController < ApplicationController
     @event.delivery_notes = params[:delivery_notes]
     @event.notes = params[:notes]
 
-    @genre.each do |genre|
-
-    end
-
     if @event.save
       redirect_to "/my_events", :notice => "Event created successfully."
     else
@@ -120,7 +116,8 @@ class EventsController < ApplicationController
 
 
     @event = Event.find(params[:id])
-    @users = @event.interested_users
+    @interested_users = @event.interested_users.where(region_id: @event.region_id)
+    @users = @interested_users.where.not(id: current_user.id)
     @subject = "Discount Tickets Available - #{@event.event_description}"
 
     interested_emails_array = []

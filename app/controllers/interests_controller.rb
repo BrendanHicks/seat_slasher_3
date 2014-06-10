@@ -1,7 +1,7 @@
 class InterestsController < ApplicationController
   def index
     @interests = Interest.all
-    @genres = Genre.all
+    @genres = Genre.all.order(:genre_name)
   end
 
   def show
